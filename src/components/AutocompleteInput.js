@@ -48,6 +48,7 @@ const AutocompleteInput = ({ onCardSelect }) => {
 
     const onSuggestionSelected = (event, { suggestion }) => {
         onCardSelect(suggestion);
+        setValue(''); // Clear the input field
     };
 
     return (
@@ -58,7 +59,7 @@ const AutocompleteInput = ({ onCardSelect }) => {
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={{
-                placeholder: 'Type a card name',
+                placeholder: 'Type a card name and press Enter to add it to your collection',
                 value,
                 onChange: (e, { newValue }) => setValue(newValue),
             }}

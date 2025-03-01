@@ -12,11 +12,15 @@ const dbPromise = openDB('mtg-card-db', 1, {
 export const addCard = async (card) => {
     const db = await dbPromise;
     const existingCard = await db.get('cards', card.id);
+    const timestamp = new Date().toISOString(); // Create a timestamp
+
     if (existingCard) {
         existingCard.count = (existingCard.count || 1) + 1;
+        existingCard.lastUpdated = timestamp; // Update timestamp
         await db.put('cards', existingCard);
     } else {
         card.count = 1;
+        card.addedAt = timestamp; // Add timestamp
         await db.put('cards', card);
     }
 };
