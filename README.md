@@ -43,16 +43,16 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 To make your commit messages more descriptive and consistent, consider using the following emojis:
 
-- 🎨 :art: - Improving the structure/format of the code.
-- 🐛 :bug: - Fixing a bug.
-- ✨ :sparkles: - Introducing new features.
-- 🔥 :fire: - Removing code or files.
-- 📝 :memo: - Writing docs.
-- 🚀 :rocket: - Deploying stuff.
-- 💄 :lipstick: - Updating the UI and style files.
-- 🎉 :tada: - Initial commit.
-- ✅ :white_check_mark: - Adding tests.
-- 🔧 :wrench: - Changing configuration files.
+- 🎨 - Improving the structure/format of the code.
+- 🐛 - Fixing a bug.
+- ✨ - Introducing new features.
+- 🔥 - Removing code or files.
+- 📝 - Writing docs.
+- 🚀 - Deploying stuff.
+- 💄 - Updating the UI and style files.
+- 🎉 - Initial commit.
+- ✅ - Adding tests.
+- 🔧 - Changing configuration files.
 
 ## Learn More
 
