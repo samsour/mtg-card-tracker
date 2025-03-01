@@ -28,7 +28,7 @@ const AutocompleteInput = ({ onCardSelect }) => {
         }
     };
 
-    const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []);
+    const debouncedFetchSuggestions = useCallback(debounce(fetchSuggestions, 300), []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const onSuggestionsFetchRequested = ({ value }) => {
         debouncedFetchSuggestions(value);
