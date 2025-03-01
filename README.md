@@ -39,6 +39,21 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Git Convenience
+
+To make your commit messages more descriptive and consistent, consider using the following emojis:
+
+- 🎨 :art: - Improving the structure/format of the code.
+- 🐛 :bug: - Fixing a bug.
+- ✨ :sparkles: - Introducing new features.
+- 🔥 :fire: - Removing code or files.
+- 📝 :memo: - Writing docs.
+- 🚀 :rocket: - Deploying stuff.
+- 💄 :lipstick: - Updating the UI and style files.
+- 🎉 :tada: - Initial commit.
+- ✅ :white_check_mark: - Adding tests.
+- 🔧 :wrench: - Changing configuration files.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

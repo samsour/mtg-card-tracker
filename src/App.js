@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import AutocompleteInput from './components/AutocompleteInput';
+import CardGrid from './components/CardGrid';
+import { addCard, getAllCards, removeCard } from './db';
 
 function App() {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      const storedCards = await getAllCards();
+      setCards(storedCards);
+    };
+    fetchCards();
+  }, []);
+
+  const handleCardSelect = async (card) => {
+    await addCard(card);
+    const updatedCards = await getAllCards();
+    setCards(updatedCards);
+  };
+
+  const handleAddCard = async (card) => {
+    await addCard(card);
+    const updatedCards = await getAllCards();
+    setCards(updatedCards);
+  };
+
+  const handleRemoveCard = async (cardId) => {
+    await removeCard(cardId);
+    const updatedCards = await getAllCards();
+    setCards(updatedCards);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Magic: The Gathering Card Tracker</h1>
+      <AutocompleteInput onCardSelect={handleCardSelect} />
+      <CardGrid cards={cards} onAddCard={handleAddCard} onRemoveCard={handleRemoveCard} />
     </div>
   );
 }
