@@ -7,14 +7,14 @@ function CardDataManager({ setCards }) {
     const cards = await exportCards();
     const csvContent =
       "data:text/csv;charset=utf-8," +
-      ["id,name,count,addedAt,lastUpdated"].join(",") +
+      ["id", "name", "count", "addedAt", "lastUpdated"].join(",") +
       "\n" +
       cards
         .map(
           (card) =>
-            `${card.id},${card.name},${card.count},${card.addedAt || ""},${
-              card.lastUpdated || ""
-            }`
+            `${card.id},"${card.name.replace(/"/g, '""')}",${card.count},${
+              card.addedAt || ""
+            },${card.lastUpdated || ""}`
         )
         .join("\n");
 
@@ -43,17 +43,21 @@ function CardDataManager({ setCards }) {
       const headers = lines[0].split(",");
 
       const cardIdentifiers = [];
+      const originalCards = []; // Store original card data
       for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(",");
-        if (values.length !== headers.length) continue;
+        const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+        if (!values) continue;
 
         const card = {};
         headers.forEach((header, index) => {
-          card[header.trim()] = values[index].trim();
+          card[header.trim()] = values[index]
+            ? values[index].replace(/^"|"$/g, "").replace(/""/g, '"').trim()
+            : "";
         });
 
         if (card.id) {
           cardIdentifiers.push({ id: card.id });
+          originalCards.push(card); // Keep the original card data
         }
       }
 
@@ -62,7 +66,7 @@ function CardDataManager({ setCards }) {
 
       // Merge additional details with the original card data
       const cards = additionalDetailsList.map((additionalDetails) => {
-        const originalCard = cardIdentifiers.find(
+        const originalCard = originalCards.find(
           (card) => card.id === additionalDetails.id
         );
         return { ...originalCard, ...additionalDetails };

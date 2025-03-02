@@ -61,13 +61,16 @@ export const importCards = async (cards) => {
         const existingCard = await db.get('cards', card.id);
         const timestamp = new Date().toISOString();
 
+
         if (existingCard) {
             existingCard.count = (existingCard.count || 1) + 1;
             existingCard.lastUpdated = timestamp;
             await db.put('cards', existingCard);
         } else {
             card.count = parseInt(card.count, 10) || 1;
-            card.addedAt = timestamp;
+            if (!card.addedAt) {
+                card.addedAt = timestamp;
+            }
             await db.put('cards', card);
         }
     }
