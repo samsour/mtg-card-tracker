@@ -34,6 +34,14 @@ const CardGrid = ({ cards, onAddCard, onRemoveCard }) => {
     return 0;
   });
 
+  // Calculate statistics
+  const totalCardCount = cards.reduce((sum, card) => sum + card.count, 0);
+  const uniqueCardCount = cards.length;
+  const totalCardPrice = cards.reduce(
+    (sum, card) => sum + (card.prices?.eur || 0) * card.count,
+    0
+  );
+
   return (
     <div>
       {showUndo && (
@@ -62,6 +70,15 @@ const CardGrid = ({ cards, onAddCard, onRemoveCard }) => {
         </div>
       )}
       <div style={{ marginBottom: "20px" }}>
+        <div style={{ marginBottom: "10px" }}>
+          <strong>Total Cards (including duplicates):</strong> {totalCardCount}
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <strong>Unique Cards:</strong> {uniqueCardCount}
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <strong>Total Price:</strong> {totalCardPrice.toFixed(2)}€
+        </div>
         <label htmlFor="sortCriteria" style={{ marginRight: "10px" }}>
           Sort by:
         </label>
@@ -118,6 +135,11 @@ const CardGrid = ({ cards, onAddCard, onRemoveCard }) => {
               <p style={{ margin: "0", fontSize: "0.9em", color: "#666" }}>
                 Count: {card.count}
               </p>
+              {card.prices?.eur && (
+                <p style={{ margin: "0", fontSize: "0.9em", color: "#666" }}>
+                  Price: {card.prices.eur}€
+                </p>
+              )}
               {card.addedAt && (
                 <p style={{ margin: "0", fontSize: "0.7em", color: "#999" }}>
                   Added: {new Date(card.addedAt).toLocaleString("de-DE")}
