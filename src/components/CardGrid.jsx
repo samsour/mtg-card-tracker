@@ -30,6 +30,8 @@ const CardGrid = ({ cards, onAddCard, onRemoveCard }) => {
       return new Date(b.addedAt) - new Date(a.addedAt);
     } else if (sortCriteria === "lastUpdated") {
       return new Date(b.lastUpdated) - new Date(a.lastUpdated);
+    } else if (sortCriteria === "price") {
+      return (b.prices?.eur || 0) - (a.prices?.eur || 0);
     }
     return 0;
   });
@@ -77,6 +79,7 @@ const CardGrid = ({ cards, onAddCard, onRemoveCard }) => {
           <option value="name">Name</option>
           <option value="addedAt">Date Added</option>
           <option value="lastUpdated">Last Updated</option>
+          <option value="price">Price</option>
         </select>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

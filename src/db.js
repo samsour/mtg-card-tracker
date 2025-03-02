@@ -21,6 +21,7 @@ export const addCard = async (card) => {
     } else {
         card.count = 1;
         card.addedAt = timestamp; // Add timestamp
+        card.lastUpdated = timestamp; // Set lastUpdated if not existing
         await db.put('cards', card);
     }
 };
