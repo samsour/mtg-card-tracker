@@ -1,5 +1,7 @@
 # Magic: The Gathering Card Tracker
 
+[![Deployment](https://github.com/samsour/mtg-card-tracker/actions/workflows/deploy.yml/badge.svg)](https://github.com/samsour/mtg-card-tracker/actions/workflows/deploy.yml)
+
 This project is a Magic: The Gathering (MTG) card tracker application that allows you to manage your card collection. It utilizes the [Scryfall API](https://scryfall.com/docs/api) to fetch card data and provides a user-friendly interface to add, view, and remove cards from your collection.
 
 ## Available Scripts
