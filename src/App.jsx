@@ -35,8 +35,10 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Magic: The Gathering Card Tracker</h1>
+    <div className="p-4 min-h-screen">
+      <h1 className="text-4xl font-bold text-center mb-6">
+        Magic: The Gathering Card Tracker
+      </h1>
       <CardDataManager setCards={setCards} />
       <AutocompleteInput onCardSelect={handleCardSelect} />
       <CardGrid
