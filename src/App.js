@@ -4,7 +4,6 @@ import AutocompleteInput from './components/AutocompleteInput';
 import CardGrid from './components/CardGrid';
 import CardDataManager from './components/CardDataManager';
 import { addCard, getAllCards, removeCard } from './db';
-import axios from 'axios';
 
 function App() {
   const [cards, setCards] = useState([]);
