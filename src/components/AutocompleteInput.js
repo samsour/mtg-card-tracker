@@ -1,8 +1,7 @@
-// src/components/AutocompleteInput.js
 import React, { useState, useCallback } from 'react';
 import Autosuggest from 'react-autosuggest';
-import axios from 'axios';
 import { debounce } from '../utils/debounce';
+import { searchCards } from '../services/cardService';
 
 const AutocompleteInput = ({ onCardSelect }) => {
     const [value, setValue] = useState('');
@@ -14,17 +13,11 @@ const AutocompleteInput = ({ onCardSelect }) => {
             return;
         }
         try {
-            const response = await axios.get(`https://api.scryfall.com/cards/search`, {
-                params: {
-                    q: input,
-                    unique: 'cards',
-                    order: 'name',
-                    dir: 'asc',
-                },
-            });
-            setSuggestions(response.data.data);
+            const suggestions = await searchCards(input);
+            setSuggestions(suggestions);
         } catch (error) {
             console.error('Error fetching suggestions:', error);
+            setSuggestions([]);
         }
     };
 
