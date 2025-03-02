@@ -13,8 +13,9 @@ function CardDataManager({ setCards }) {
 
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
+        const date = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "cards.csv");
+        link.setAttribute("download", `mtg-card-tracker_export_${date}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
