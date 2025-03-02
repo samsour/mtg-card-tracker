@@ -1,6 +1,19 @@
 // src/services/cardService.js
 import axios from 'axios';
 
+// Function to fetch multiple card details by their IDs
+export const fetchMultipleCards = async (cardIdentifiers) => {
+    try {
+        const response = await axios.post('https://api.scryfall.com/cards/collection', {
+            identifiers: cardIdentifiers
+        });
+        return response.data.data; // Return the array of card objects
+    } catch (error) {
+        console.error('Error fetching multiple cards:', error);
+        return [];
+    }
+};
+
 // Function to search for cards by a query
 export const searchCards = async (query) => {
     try {
