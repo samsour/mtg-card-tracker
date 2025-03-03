@@ -7,6 +7,7 @@ import { addCard, getAllCards, removeCard } from "./db";
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [isMultilingual, setIsMultilingual] = useState(false); // Default multilingual set to false
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -39,8 +40,23 @@ function App() {
       <h1 className="text-4xl font-bold text-center mb-6">
         Magic: The Gathering Card Tracker
       </h1>
+      <div className="mb-4">
+        <label htmlFor="multilingual-checkbox" className="mr-2">
+          Multilingual:
+        </label>
+        <input
+          type="checkbox"
+          id="multilingual-checkbox"
+          checked={isMultilingual}
+          onChange={(e) => setIsMultilingual(e.target.checked)}
+          className="border p-2"
+        />
+      </div>
       <CardDataManager setCards={setCards} />
-      <AutocompleteInput onCardSelect={handleCardSelect} />
+      <AutocompleteInput
+        onCardSelect={handleCardSelect}
+        isMultilingual={isMultilingual}
+      />
       <CardGrid
         cards={cards}
         onAddCard={handleAddCard}

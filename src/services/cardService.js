@@ -15,10 +15,10 @@ export const fetchMultipleCards = async (cardIdentifiers) => {
 };
 
 // Function to search for cards by a query
-export const searchCards = async (query) => {
+export const searchCards = async (query, isMultilingual) => {
     try {
         const response = await axios.get(`https://api.scryfall.com/cards/search`, {
-            params: { q: query }
+            params: { q: query, include_multilingual: isMultilingual }
         });
         return response.data.data; // Return the array of card suggestions
     } catch (error) {
