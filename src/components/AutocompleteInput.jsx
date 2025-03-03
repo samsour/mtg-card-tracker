@@ -44,20 +44,26 @@ const AutocompleteInput = ({ onCardSelect, isMultilingual }) => {
   };
 
   return (
-    <Autosuggest
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      inputProps={{
-        placeholder:
-          "Type a card name and press Enter to add it to your collection",
-        value,
-        onChange: (e, { newValue }) => setValue(newValue),
-      }}
-      onSuggestionSelected={onSuggestionSelected}
-    />
+    <div className="flex flex-col items-start space-y-2">
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={{
+          placeholder:
+            "Type a card name and press Enter to add it to your collection",
+          value,
+          onChange: (e, { newValue }) => setValue(newValue),
+          className: "border p-2 rounded w-full",
+        }}
+        onSuggestionSelected={onSuggestionSelected}
+      />
+      <span className="text-sm text-gray-600">
+        Multilingual: {isMultilingual ? "Enabled" : "Disabled"}
+      </span>
+    </div>
   );
 };
 

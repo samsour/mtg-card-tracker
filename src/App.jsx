@@ -51,6 +51,7 @@ function App() {
           onChange={(e) => setIsMultilingual(e.target.checked)}
           className="border p-2"
         />
+        <span className="ml-2">{isMultilingual ? "Enabled" : "Disabled"}</span>
       </div>
       <CardDataManager setCards={setCards} />
       <AutocompleteInput
