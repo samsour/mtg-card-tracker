@@ -13,6 +13,11 @@ const AutocompleteInput = ({ onCardSelect, isMultilingual }) => {
       return;
     }
     try {
+      console.log(
+        "Fetching suggestions for:",
+        input,
+        isMultilingual ? "multilingual" : "English"
+      );
       const suggestions = await searchCards(input, isMultilingual);
       setSuggestions(suggestions);
     } catch (error) {
