@@ -26,9 +26,10 @@ const AutocompleteInput = ({ onCardSelect, isMultilingual }) => {
     }
   };
 
+  // eslint-disable-next-line
   const debouncedFetchSuggestions = useCallback(
     debounce(fetchSuggestions, 300),
-    []
+    [isMultilingual]
   );
 
   const onSuggestionsFetchRequested = ({ value }) => {
